@@ -1,8 +1,12 @@
 'use strict';
 var path = require('path');
 var babel = require('babel-core');
+var fs = require("fs");
+var getBabelRelayPlugin = require('babel-relay-plugin');
 
 module.exports = function (grunt) {
+	var schemaData = grunt.file.readJSON('./schema.json');
+	var plugin = getBabelRelayPlugin(schemaData.data);
 	grunt.registerMultiTask('babel', 'Transpile ES6 to ES5', function () {
 		var options = this.options();
 
@@ -15,8 +19,9 @@ module.exports = function (grunt) {
 				options.sourceFileName = options.sourceFileName.replace(/\\/g, '/');
 			}
 			options.sourceMapTarget = path.basename(el.dest);
-
-			var res = babel.transformFileSync(el.src[0], options);
+			options.plugins = [plugin];
+			var source = fs.readFileSync(el.src[0]);
+			var res = babel.transform(source, options);
 
 			var sourceMappingURL = '';
 			if (res.map) {
