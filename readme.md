@@ -20,22 +20,23 @@ require('load-grunt-tasks')(grunt); // npm install --save-dev load-grunt-tasks
 grunt.initConfig({
 	babel: {
 		options: {
-		sourceMap: true,
-		modules: "amd",
-		optional: ["es7.classProperties"],
-		relay: {
-			schema: './data/schema.json',
-			plugin: 'babel-relay-plugin'
+			sourceMap: true,
+			modules: "amd",
+			optional: ["es7.classProperties"],
+			relay: {
+				schema: './data/schema.json',
+				plugin: 'babel-relay-plugin'
+			}
+		},
+		dist: {
+			files: [{
+				expand: true,
+				cwd: "<%= srcDir %>/js/",
+				src: ["**/*.jsx"],
+				ext: ".js",
+				dest: "<%= buildDistDir %>/js/"
+			}]
 		}
-	},
-	dist: {
-		files: [{
-			expand: true,
-			cwd: "<%= srcDir %>/js/",
-			src: ["**/*.jsx"],
-			ext: ".js",
-			dest: "<%= buildDistDir %>/js/"
-		}]
 	}
 });
 
