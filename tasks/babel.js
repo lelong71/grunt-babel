@@ -6,18 +6,21 @@ var fs = require("fs");
 module.exports = function (grunt) {
 	grunt.registerMultiTask('babel', 'Transpile ES6 to ES5', function () {
 		var options = this.options();
+		var relay = null;
+
+		if (options.relay) {
+			relay = true;
+			var getPlugin = require(options.relay.plugin);
+			var schema = grunt.file.readJSON(options.relay.schema);
+			options.plugins = [getPlugin(schema.data)];
+			delete options.relay;
+		}
 
 		this.files.forEach(function (el) {
 			delete options.filename;
 			delete options.filenameRelative;
 			var res = null;
-			if (options.relay) {
-				var getPlugin = require(options.relay.plugin);
-				var schema = grunt.file.readJSON(options.relay.schema);
-				var plugin = getPlugin(schema.data);
-				options.plugins = [plugin];
-				delete options.relay;
-
+			if (relay) {
 				var source = fs.readFileSync(el.src[0]);
 				res = babel.transform(source, options);
 			} else {
