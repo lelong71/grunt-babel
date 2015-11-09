@@ -4,7 +4,7 @@ var babel = require('babel-core');
 var fs = require("fs");
 
 module.exports = function (grunt) {
-	grunt.registerMultiTask('babel', 'Transpile ES6 to ES5', function () {
+	grunt.registerMultiTask('babel', 'Use next generation JavaScript, today', function () {
 		var options = this.options();
 		var relay = null;
 
@@ -28,12 +28,15 @@ module.exports = function (grunt) {
 			}
 
 			options.sourceFileName = path.relative(path.dirname(el.dest), el.src[0]);
+
 			if (process.platform === 'win32') {
 				options.sourceFileName = options.sourceFileName.replace(/\\/g, '/');
 			}
+
 			options.sourceMapTarget = path.basename(el.dest);
 
 			var sourceMappingURL = '';
+
 			if (res.map) {
 				sourceMappingURL = '\n//# sourceMappingURL=' + path.basename(el.dest) + '.map';
 			}

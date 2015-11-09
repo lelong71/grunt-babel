@@ -1,14 +1,14 @@
 # grunt-babel [![Build Status](https://travis-ci.org/babel/grunt-babel.svg?branch=master)](https://travis-ci.org/babel/grunt-babel)
 
-> Turn ES6 code into vanilla ES5 with no runtime required using [babel](https://github.com/babel/babel)
+> Use next generation JavaScript, today, with [Babel](https://babeljs.io)
 
-*Issues with the output should be reported on the babel [issue tracker](https://github.com/babel/babel/issues).*
+*Issues with the output should be reported on the Babel [issue tracker](https://github.com/babel/babel/issues).*
 
 
 ## Install
 
 ```
-$ npm install --save-dev grunt-babel
+$ npm install --save-dev grunt-babel babel-preset-es2015
 ```
 
 
@@ -46,7 +46,7 @@ grunt.registerTask('default', ['babel']);
 
 ## Options
 
-See the `babel` [options](https://babeljs.io/docs/usage/options), except for `filename` which is handled for you.
+See the Babel [options](https://babeljs.io/docs/usage/options), except for `filename` which is handled for you.
 
 
 ## License
