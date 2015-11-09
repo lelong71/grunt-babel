@@ -3,7 +3,7 @@
   "version": "5.0.3",
   "description": "Turn ES6 code into vanilla ES5 with no runtime required",
   "license": "MIT",
-  "repository": "babel/grunt-babel",
+  "repository": "lelong71/grunt-babel",
   "author": {
     "name": "Sindre Sorhus",
     "email": "sindresorhus@gmail.com",
